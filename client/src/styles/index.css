@@ -1,0 +1,237 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --orbit-bg: #080d13;
+    --orbit-line: #293744;
+  }
+
+  * {
+    border-color: var(--orbit-line);
+  }
+
+  html {
+    height: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply min-h-full bg-bg font-sans text-ink antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'ss01';
+  }
+
+  #root {
+    min-height: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    letter-spacing: -0.015em;
+  }
+
+  ::selection {
+    background: #d9f26a;
+    color: #080d13;
+  }
+
+  :focus-visible {
+    outline: 2px solid #d9f26a;
+    outline-offset: 2px;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #293744 transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #293744;
+    border-radius: 0;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  input[type='range'] {
+    accent-color: #d9f26a;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply border border-line bg-surface;
+    border-radius: 3px;
+  }
+
+  .panel-head {
+    @apply flex min-h-[40px] items-center justify-between gap-3 border-b border-line px-4 py-2.5;
+  }
+
+  .label {
+    @apply font-mono text-[10px] uppercase leading-[14px] tracking-[0.18em] text-muted;
+  }
+
+  .label-strong {
+    @apply font-mono text-[10px] uppercase leading-[14px] tracking-[0.18em] text-ink;
+  }
+
+  .value-xl {
+    @apply font-mono text-[36px] leading-none tracking-[-0.03em];
+    font-variant-numeric: tabular-nums;
+  }
+
+  .value-lg {
+    @apply font-mono text-2xl leading-none tracking-tight;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .value-md {
+    @apply font-mono text-lg leading-none;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .numeric {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 border px-3 py-1.5 font-display text-[12px] font-medium tracking-wide transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-40;
+    border-radius: 2px;
+  }
+
+  .btn-primary {
+    @apply border-accent bg-accent text-bg hover:border-[#e6fa8c] hover:bg-[#e6fa8c];
+  }
+
+  .btn-secondary {
+    @apply border-line bg-surface2 text-ink hover:border-[#3b4d5f] hover:bg-elevated;
+  }
+
+  .btn-ghost {
+    @apply border-transparent text-muted hover:border-line hover:text-ink;
+  }
+
+  .btn-danger {
+    @apply border-critical/50 bg-critical/10 text-critical hover:border-critical hover:bg-critical/15;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 border border-line bg-surface2 px-2 py-1 font-mono text-[10px] uppercase leading-none tracking-[0.12em] text-muted;
+    border-radius: 2px;
+  }
+
+  .input {
+    @apply w-full border border-line bg-bg px-3 py-2 font-mono text-sm text-ink placeholder:text-muted/50 focus:border-accent focus:outline-none;
+    border-radius: 2px;
+  }
+
+  .hairline {
+    @apply border-line;
+  }
+
+  .corner-marks {
+    position: relative;
+  }
+
+  .corner-marks::before,
+  .corner-marks::after {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-color: #d9f26a;
+    opacity: 0.9;
+    pointer-events: none;
+  }
+
+  .corner-marks::before {
+    top: -1px;
+    left: -1px;
+    border-top: 1px solid;
+    border-left: 1px solid;
+  }
+
+  .corner-marks::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+  }
+
+  .link-underline {
+    @apply underline decoration-line underline-offset-4 transition-colors hover:decoration-accent;
+  }
+
+  .skip-link {
+    @apply fixed left-3 top-3 z-[100] -translate-y-16 border border-accent bg-accent px-3 py-2 font-display text-[12px] font-medium text-bg transition-transform;
+  }
+
+  .skip-link:focus {
+    @apply translate-y-0;
+  }
+}
+
+/* Respect both the operating system preference and the in-app setting. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+@media print {
+  .no-print,
+  aside,
+  .app-topbar,
+  .mobile-nav {
+    display: none !important;
+  }
+
+  .app-main {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+
+  .print-pl-0 {
+    padding-left: 0 !important;
+  }
+
+  body {
+    background: #080d13 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .panel {
+    break-inside: avoid;
+  }
+
+  @page {
+    margin: 12mm;
+  }
+}

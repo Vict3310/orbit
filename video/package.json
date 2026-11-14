@@ -1,0 +1,28 @@
+{
+  "name": "orbit-launch-film",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "audio": "node scripts/generate-audio.mjs",
+    "render": "remotion render src/index.ts OrbitLaunch out/orbit-launch-1080p.mp4 --codec=h264 --crf=18 --pixel-format=yuv420p",
+    "render:preview": "remotion render src/index.ts OrbitLaunch out/orbit-launch-preview.mp4 --scale=0.6666667 --codec=h264 --crf=23 --pixel-format=yuv420p",
+    "thumbnail": "remotion still src/index.ts OrbitLaunch out/orbit-launch-thumbnail.png --frame=2300",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.2.5",
+    "@fontsource/jetbrains-mono": "^5.2.5",
+    "@fontsource/space-grotesk": "^5.2.5",
+    "@remotion/cli": "4.0.543",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.543"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "typescript": "^5.8.2"
+  }
+}
